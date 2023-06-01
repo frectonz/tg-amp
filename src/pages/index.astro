@@ -1,0 +1,74 @@
+---
+import underline from "../assets/underline.svg";
+import { ArrowRightIcon } from "../assets/icons";
+
+import Box from "../components/Box.astro";
+import Features from "../components/Features";
+import Layout from "../components/Layout.astro";
+import TelegramLoginButton from "../components/TelegramLoginButton";
+---
+
+<Layout title="TG REMOTE CONTROL">
+  <section class="grid grid-cols-1 lg:grid-cols-2 w-full lg:h-screen">
+    <div
+      class="bg-blue-500 h-screen border-b-2 lg:border-b-0 border-r-0 lg:border-r-2 border-black background-telegram-logos grid place-items-center"
+    >
+      <div class="w-6/12 text-center">
+        <h1 class="font-bold md:text-6xl text-4xl text-white">
+          Managing
+          <span class="block">Telegram Channels</span>
+          just got way easier!
+        </h1>
+        <img
+          src={underline}
+          alt="underline"
+          class="mt-2 sm:mt-3 sm:scale-[2] mx-auto"
+        />
+      </div>
+    </div>
+
+    <div class="min-h-screen flex flex-col justify-end items-center">
+      <Box>
+        <h2 class="font-bold text-5xl">Features</h2>
+        <p class="text-xl italic">Click on the cards to learn more</p>
+        <Features client:load />
+      </Box>
+
+      <Box>
+        <h2 class="font-bold text-4xl">
+          Convinced yet? Register for Early Access
+        </h2>
+
+        <div class="flex flex-wrap gap-2 mt-2 w-full">
+          <div>
+            <label class="text-xl" for="emailInput"> Email</label>
+            <div class="flex box-shadow border-2 border-black">
+              <input
+                id="emailInput"
+                class="px-2 py-1 text-xl border-r-2 border-black"
+                placeholder="your@email.com"
+              />
+              <button class="px-2 py-1 text-xl">
+                <ArrowRightIcon client:idle />
+              </button>
+            </div>
+          </div>
+
+          <div class="grid place-items-center">
+            <h3 class="mt-2 font-bold text-3xl">OR</h3>
+          </div>
+
+          <div>
+            <label class="text-xl" for="telegram">
+              Continue with Telegram</label
+            >
+            <TelegramLoginButton
+              client:load
+              className="px-2 py-1 bg-[#54a9eb] box-shadow border-2 border-black text-black"
+            />
+          </div>
+        </div>
+      </Box>
+    </div>
+  </section>
+</Layout>

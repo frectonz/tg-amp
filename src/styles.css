@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Darker Grotesque", sans-serif;
+}
+
+body {
+  @apply bg-neutral-300;
+}
+
+.box-shadow {
+  box-shadow: 5px 5px #000;
+}
+
+.left-box-shadow {
+  box-shadow: -5px 5px #000;
+}
+
+.background-telegram-logos {
+  background-image: url('/background.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.text-shadow {
+  text-shadow: 3px 3px #000000;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
