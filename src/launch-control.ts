@@ -29,12 +29,9 @@ export class LaunchControl {
   }
 
   private async sendSessionStartBeacon() {
+    const url = `${this.serverUrl}/session/start`;
+
     const sourceName = await this.extractSourceName();
-
-    const url = sourceName
-      ? `${this.serverUrl}/session/start?source_name=${sourceName}`
-      : `${this.serverUrl}/session/start`;
-
     await fetch(url, {
       method: "POST",
       keepalive: true,
@@ -42,6 +39,7 @@ export class LaunchControl {
       headers: {
         "Content-Type": "application/json",
         "x-tracking-id": this.trackingId,
+        "x-source-name": sourceName,
       },
       body: JSON.stringify({
         timestamp: Date.now() / 1000, // seconds

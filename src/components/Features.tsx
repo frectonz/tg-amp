@@ -6,8 +6,7 @@ const Features = () => (
       <a
         key={feature.id}
         href={`/features/${feature.id}`}
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={() => {
           window.launchControl.sendClickEvent(`feature:${feature.id}`);
         }}
       >
