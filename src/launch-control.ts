@@ -21,8 +21,10 @@ export class LaunchControl {
     console.log("session start");
   }
 
-  private async extractSourceName(): Promise<string | null> {
+  private async extractSourceName() {
     const url = new URL(window.location.href);
+    if (!url.searchParams.has("src")) return null;
+
     const src = url.searchParams.get("src");
     window.history.replaceState({}, "", url.pathname);
     return src;
@@ -31,16 +33,20 @@ export class LaunchControl {
   private async sendSessionStartBeacon() {
     const url = `${this.serverUrl}/session/start`;
 
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("x-tracking-id", this.trackingId);
     const sourceName = await this.extractSourceName();
+
+    if (sourceName) {
+      headers.append("x-source-name", sourceName);
+    }
+
     await fetch(url, {
       method: "POST",
       keepalive: true,
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "x-tracking-id": this.trackingId,
-        "x-source-name": sourceName,
-      },
+      headers,
       body: JSON.stringify({
         timestamp: Date.now() / 1000, // seconds
         pathname: window.location.pathname,
