@@ -23,18 +23,16 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-
-    <script>
-      import { LaunchControl } from "../launch-control";
-
-      window.launchControl = new LaunchControl(
-        "http://localhost:3030",
-        "01H1TSXGNTKGCGZ6B1NJK0V2R7"
-      );
-      window.launchControl.initialize();
-    </script>
   </head>
   <body>
     <slot />
+
+    <script
+      async
+      defer
+      src="http://localhost:3030/launch-control.js"
+      data-id="trantor"
+      data-tracking-id="01H2AY2D0CKWEH0QTT7ZMN9S34"
+    ></script>
   </body>
 </html>
